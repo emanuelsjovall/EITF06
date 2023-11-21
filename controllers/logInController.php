@@ -26,3 +26,4 @@ if ($rowUser['password'] === hash('sha256', $pass . $rowUser['salt'])){
     header("Location: ../index.php?error=Incorrect username or password");
     exit();
 }
+
