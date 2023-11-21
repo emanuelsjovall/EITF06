@@ -4,6 +4,7 @@
     <title>LOGIN</title>
   </head>
   <body>
+    
     <form action="/controllers/registController.php" method="post">
       <h2>REGISTER</h2>
       <?php if (isset($_GET['error'])) { ?>
