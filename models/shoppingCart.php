@@ -1,5 +1,5 @@
 <?php
-class ShoppingChart {
+class ShoppingCart {
     private $dictionaryProducts;
 
     public function __construct() {
