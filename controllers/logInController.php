@@ -13,7 +13,7 @@ if (mysqli_num_rows($resultGetUser) === 0){
 }
 
 $rowUser = mysqli_fetch_assoc($resultGetUser);
-if ($rowUser['password'] === hash('sha256', $$password . $row['salt'])){
+if ($rowUser['password'] === hash('sha256', $pass . $rowUser['salt'])){
     if (isset($_POST['keepLoggedIn']) && $_POST['keepLoggedIn'] == 'on') {
         session_start();
         setcookie('username', $username, time() + (86400 * 30), "/"); 

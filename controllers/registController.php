@@ -8,7 +8,7 @@ $userAddress = $_POST['userAdress'];
 
 
 $salt = bin2hex(random_bytes(16));
-$hashed_password = hash('sha256', $$password . $salt);
+$hashed_password = hash('sha256', $pass . $salt);
 
 $insertUser = "INSERT INTO Users (username, password, salt, address) VALUES ('$username', '$hashed_password', '$salt', '$userAddress')";
 
