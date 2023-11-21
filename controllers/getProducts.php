@@ -10,7 +10,7 @@ $queryFruits = "SELECT * FROM Products";
 $resultFruits = mysqli_query($conn, $queryFruits);
 
 while ($row = mysqli_fetch_assoc($resultFruits)) {
-    $fruit = new Fruit($row['name'], $row['stock'], $row['price']);
+    $fruit = new Fruit($row['name'], $row['price']);
     $fruits[] = $fruit;
 }
 
