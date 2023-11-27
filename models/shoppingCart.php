@@ -32,11 +32,11 @@ class ShoppingCart {
     }
 
     public function toString() {
-        $output = "Shopping Chart:\n";
+        $output = "Shopping Chart:</br>";
         foreach ($this->dictionaryProducts as $productName => $product) {
-            $output .= "$productName - Price: {$product['price']}, Quantity: {$product['quantity']}\n";
+            $output .= "$productName - Price: {$product['price']}, Quantity: {$product['quantity']}</br>";
         }
-        $output .= "Total Price: {$this->getTotalPrice()}\n";
+        $output .= "</br>Total Price: {$this->getTotalPrice()}</br>";
         return $output;
     }
 }

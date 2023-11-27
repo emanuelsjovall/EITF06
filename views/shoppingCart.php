@@ -14,6 +14,6 @@
     <br>
     <a href="../controllers/getProducts.php">Continue Shopping</a>
     <br>
-    <a href="../controllers/checkoutController.php">Checkout</a>
+    <a href="../views/payment.php">Checkout</a>
 </body>
 </html>

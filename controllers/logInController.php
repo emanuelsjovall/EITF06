@@ -14,15 +14,14 @@ if (mysqli_num_rows($resultGetUser) === 0){
 
 $rowUser = mysqli_fetch_assoc($resultGetUser);
 if ($rowUser['password'] === hash('sha256', $pass . $rowUser['salt'])){
+    session_start();
     if (isset($_POST['keepLoggedIn']) && $_POST['keepLoggedIn'] == 'on') {
-        session_start();
         setcookie('username', $username, time() + (86400 * 30), "/"); 
-    } else {
-        $_SESSION['username'] = $username;
     }
+    $_SESSION['username'] = $username;
     header("Location: getProducts.php");
     exit();
-}else{
+} else {
     header("Location: ../index.php?error=Incorrect username or password");
     exit();
 }

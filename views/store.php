@@ -4,15 +4,15 @@
     <title>Fruit Store</title>
 </head>
 <body>
-    <h2>Fruit Store</h2>
-
+    
     <?php
     require_once('../models/fruit.php');
     session_start();
-
-    $fruits = $_SESSION['fruits'];
     
+    $fruits = $_SESSION['fruits'];
+    echo "logged in as: " . $_SESSION['username'] . "</br>";
     ?>
+    <h2>Fruit Store:</h2>
     <table>
         <thead>
             <tr>
@@ -43,6 +43,6 @@
     <br>
     <a href="shoppingCart.php">See Shopping Cart</a>
     <br>
-    <a href="../controllers/checkoutController.php">Checkout</a>
+    <a href="../views/payment.php">Checkout</a>
 </body>
 </html>
