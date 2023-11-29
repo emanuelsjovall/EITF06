@@ -6,11 +6,11 @@
   <body>
     <?php
         if(isset($_COOKIE['username'])) {
-          header('location:/controllers/getProducts.php');
+          header('location:controllers/getProducts.php');
           exit(0);
         }
     ?>
-    <form action="/controllers/logInController.php" method="post">
+    <form action="controllers/logInController.php" method="post">
       <h2>LOGIN</h2>
       <?php if (isset($_GET['error'])) { ?>
         <p class = "error"><?php echo $_GET['error']?></p>

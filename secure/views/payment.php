@@ -23,7 +23,7 @@ session_start();
     </p>
 
     <div>
-        <form action="/controllers/paymentController.php" method="POST">
+        <form action="../controllers/paymentController.php" method="POST">
             <label for="transaction_id">Transaction ID:</label>
             <input type="number" id="transaction_id" name="transaction_id" required>
 
