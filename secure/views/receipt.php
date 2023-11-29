@@ -7,8 +7,9 @@
 <body>
     <h1>Receipt</h1>
     <?php
-        if(isset($_GET['id'])) {
-            echo "<p>Transaction ID: " . $_GET['id'] . "</p>";
+        $input = $_GET['id'];
+        if(isset($input)){
+            echo "<p>Transaction ID: " . htmlspecialchars($input) . "</p>";
         }
     ?>
     <?php 
