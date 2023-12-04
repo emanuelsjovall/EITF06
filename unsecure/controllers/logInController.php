@@ -8,7 +8,7 @@ $pass= $_POST['password'];
 $getUserQuery = "SELECT * FROM Users_Unsec WHERE username='$username' AND password='$pass'";
 $resultGetUser = mysqli_query($conn, $getUserQuery);
 if (mysqli_num_rows($resultGetUser) === 0){
-    header("Location: ../index.php?error=Incorrect username or password, 1");
+    header("Location: ../index.php?error=Incorrect username or password");
     exit();
 }
 
