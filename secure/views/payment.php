@@ -18,8 +18,13 @@ session_start();
     <p>
         Your total is: <?php echo $_SESSION['shopping_cart']->getTotalPrice(); ?> Coins</br>
         <!-- Make sure that the webserver wallet is running on port 8080 -->
-        <!-- Send it to the following address: <?php echo exec("./cli server getwalletaddress -apiport 8080"); ?> -->
-        Send it to the following address: 15zxMRUemjZGH9yMf9Y1zmQ5x8S4mYzswV
+        Send it to the following address:
+        <?php 
+        // i put the Simpleblockchain code in the htdocs file in XAMPP
+        // if it's anywhere else just change the $command to your fullpath 
+            $command = '/Applications/XAMPP/xamppfiles/htdocs/SimpleBlockchain/./cli server getwalletaddress -apiport 8080';
+            echo exec($command);
+        ?>
     </p>
 
     <div>

@@ -1,7 +1,7 @@
 <?php
 
 $sname= "localhost";
-$unmae= "phpmyadmin";
+$unmae= "phpmyadmin"; #root
 $password= "phpmyadmin";
 $db_name = "eitf06db";
 
