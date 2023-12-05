@@ -5,8 +5,11 @@ require_once('../models/fruit.php');
 $username= $_POST['uname']; 
 $pass= $_POST['password'];
 
-$getUserQuery = "SELECT * FROM Users WHERE username='$username'";
-$resultGetUser = mysqli_query($conn, $getUserQuery);
+$stmt = mysqli_prepare($conn, "SELECT * FROM Users WHERE username=(?)");
+mysqli_stmt_bind_param($stmt, "s", $username);
+mysqli_stmt_execute($stmt);
+$resultGetUser = mysqli_stmt_get_result($stmt);
+
 if (mysqli_num_rows($resultGetUser) === 0){
     header("Location: ../index.php?error=Incorrect username or password");
     exit();

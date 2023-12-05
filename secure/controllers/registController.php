@@ -3,21 +3,21 @@ include "../db_conn.php";
 require_once('../models/fruit.php');
 
 function validatePassword($password) {
-    if (strlen($password) < 8) {
-        return false;
-    }
-    if (!preg_match('/[A-Z]/', $password)) {
-        return false;
-    }
-    if (!preg_match('/[a-z]/', $password)) {
-        return false;
-    }
-    if (!preg_match('/[0-9]/', $password)) {
-        return false;
-    }
-    if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
-        return false;
-    }
+    // if (strlen($password) < 8) {
+    //     return false;
+    // }
+    // if (!preg_match('/[A-Z]/', $password)) {
+    //     return false;
+    // }
+    // if (!preg_match('/[a-z]/', $password)) {
+    //     return false;
+    // }
+    // if (!preg_match('/[0-9]/', $password)) {
+    //     return false;
+    // }
+    // if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
+    //     return false;
+    // }
     return true;
 }
 
@@ -25,8 +25,11 @@ $username= $_POST['uname'];
 $pass= $_POST['password'];
 $userAddress = $_POST['userAdress'];
 
-$getUserQuery = "SELECT * FROM Users WHERE username='$username'";
-$resultGetUser = mysqli_query($conn, $getUserQuery);
+$stmt = mysqli_prepare($conn, "SELECT * FROM Users WHERE username=(?)");
+mysqli_stmt_bind_param($stmt, "s", $username);
+mysqli_stmt_execute($stmt);
+$resultGetUser = mysqli_stmt_get_result($stmt);
+
 if (mysqli_num_rows($resultGetUser) !== 0){
     header("Location: ../views/register.php?error=Username already exists!");
     exit();
@@ -35,10 +38,10 @@ if (mysqli_num_rows($resultGetUser) !== 0){
 if (validatePassword($pass)) {
     $salt = bin2hex(random_bytes(16));
     $hashed_password = hash('sha256', $pass . $salt);
-    
-    $insertUser = "INSERT INTO Users (username, password, salt, address) VALUES ('$username', '$hashed_password', '$salt', '$userAddress')";
-    
-    mysqli_query($conn, $insertUser);
+    $username = htmlspecialchars($username); // to stop XSS attacks using the username
+    $stmt = mysqli_prepare($conn, "INSERT INTO Users (username, password, salt, address) VALUES (?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssss", $username, $hashed_password, $salt, $userAddress);
+    mysqli_stmt_execute($stmt);
     
     header("Location: ../index.php?message=You are registered!");
     exit();
