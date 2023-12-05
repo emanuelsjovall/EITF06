@@ -3,21 +3,21 @@ include "../db_conn.php";
 require_once('../models/fruit.php');
 
 function validatePassword($password) {
-    // if (strlen($password) < 8) {
-    //     return false;
-    // }
-    // if (!preg_match('/[A-Z]/', $password)) {
-    //     return false;
-    // }
-    // if (!preg_match('/[a-z]/', $password)) {
-    //     return false;
-    // }
-    // if (!preg_match('/[0-9]/', $password)) {
-    //     return false;
-    // }
-    // if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
-    //     return false;
-    // }
+    if (strlen($password) < 8) {
+        return false;
+    }
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+    if (!preg_match('/[a-z]/', $password)) {
+        return false;
+    }
+    if (!preg_match('/[0-9]/', $password)) {
+        return false;
+    }
+    if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
+        return false;
+    }
     return true;
 }
 

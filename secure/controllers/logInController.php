@@ -22,7 +22,7 @@ if (hash_equals($rowUser['password'], hash('sha256', $pass . $rowUser['salt'])))
     if (isset($_POST['keepLoggedIn']) && $_POST['keepLoggedIn'] == 'on') {
         setcookie('secure_session_id', $secureSessionId, time() + (86400 * 30), "/"); 
     }
-    $_SESSION['username'] = $username;
+    $_SESSION['username'] = $rowUser['username'];
     header("Location: getProducts.php");
     exit();
 } else {
