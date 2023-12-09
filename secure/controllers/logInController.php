@@ -20,7 +20,7 @@ if (hash_equals($rowUser['password'], hash('sha256', $pass . $rowUser['salt'])))
     session_start();
     $secureSessionId = bin2hex(random_bytes(64));
     if (isset($_POST['keepLoggedIn']) && $_POST['keepLoggedIn'] == 'on') {
-        setcookie('secure_session_id', $secureSessionId, time() + (86400 * 30), "/"); 
+        setcookie('secure_session_id', $secureSessionId, time() + (86400 * 30), "/", "localhost", true, true); 
     }
     $_SESSION['username'] = $rowUser['username'];
     header("Location: getProducts.php");
