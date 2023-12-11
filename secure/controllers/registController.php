@@ -18,6 +18,10 @@ function validatePassword($password) {
     if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
         return false;
     }
+    $blacklisted = array("!Qq12345");
+    if (in_array($password, $blacklisted)) {
+        return false;
+    }
     return true;
 }
 
@@ -45,7 +49,7 @@ if (validatePassword($pass)) {
     
     header("Location: ../index.php?message=You are registered!");
     exit();
-}else{
+} else { 
     header("Location: ../views/register.php?error=Password has to have 8 caracters at least, one uppercase letter, one lowercase letter, one number and one special character!");
     exit();
 }
