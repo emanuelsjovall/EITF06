@@ -25,6 +25,9 @@ if (hash_equals($rowUser['password'], hash('sha256', $pass . $rowUser['salt'])))
     $secureSessionId = bin2hex(random_bytes(64));
     if (isset($_POST['keepLoggedIn']) && $_POST['keepLoggedIn'] == 'on') {
         setcookie('secure_session_id', $secureSessionId, time() + (86400 * 30), "/", "localhost", true, true); 
+        $stmt = mysqli_prepare($conn, "INSERT INTO Secure (id, session) VALUES (?, ?)");
+        mysqli_stmt_bind_param($stmt, "ss", $secureSessionId, session_id());
+        mysqli_stmt_execute($stmt);
     }
     $_SESSION['username'] = $rowUser['username'];
     $_SESSION['attempts'] = 0;

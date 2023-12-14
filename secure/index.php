@@ -5,9 +5,24 @@
   </head>
   <body>
     <?php
+        include "./db_conn.php";
         if(isset($_COOKIE['secure_session_id'])) {
-          header('location:controllers/getProducts.php');
-          exit(0);
+          $secure = $_COOKIE['secure_session_id'];
+          $stmt = mysqli_prepare($conn, "SELECT * FROM Secure WHERE id=(?)");
+          mysqli_stmt_bind_param($stmt, "s", $secure);
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
+          // if there is a session id in the database that matches the secure id
+          if (mysqli_num_rows($result) !== 0){
+            $data = mysqli_fetch_assoc($result);
+            if ($secure === $data['id']) {
+              session_start();
+              session_id($data['session']);
+              setcookie('PHPSESSID', $data['session'], 0, "/", "localhost", true, true);
+              header('location:controllers/getProducts.php');
+              exit(0);
+            }
+          }
         }
     ?>
     <form action="controllers/logInController.php" method="post">
