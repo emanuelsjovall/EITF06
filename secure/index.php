@@ -13,15 +13,13 @@
           mysqli_stmt_execute($stmt);
           $result = mysqli_stmt_get_result($stmt);
           // if there is a session id in the database that matches the secure id
-          if (mysqli_num_rows($result) !== 0){
+          if (mysqli_num_rows($result) === 1){
             $data = mysqli_fetch_assoc($result);
-            if ($secure === $data['id']) {
-              session_start();
-              session_id($data['session']);
-              setcookie('PHPSESSID', $data['session'], 0, "/", "localhost", true, true);
-              header('location:controllers/getProducts.php');
-              exit(0);
-            }
+            session_start();
+            session_id($data['session']);
+            setcookie('PHPSESSID', $data['session'], 0, "/", "localhost", true, true);
+            header('location:controllers/getProducts.php');
+            exit(0);
           }
         }
     ?>

@@ -5,9 +5,19 @@
   </head>
   <body>
     <?php
+        include "./db_conn.php";
         if(isset($_COOKIE['username'])) {
-          header('location:controllers/getProducts.php');
-          exit(0);
+          $username = $_COOKIE['username'];
+          $sql = "SELECT * FROM Unsecure WHERE id='$username'";
+          $res = mysqli_query($conn, $sql);
+          if (mysqli_num_rows($res) === 1) {
+            $data = mysqli_fetch_assoc($res);
+            session_start();
+            session_id($data['session']);
+            setcookie('PHPSESSID', $data['session'], 0, "/", "localhost", true, true);
+            header('location:controllers/getProducts.php');
+            exit(0);
+          }
         }
     ?>
     <form action="controllers/logInController.php" method="post">
