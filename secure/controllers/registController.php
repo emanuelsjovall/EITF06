@@ -18,8 +18,8 @@ function validatePassword($password) {
     if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
         return false;
     }
-    $blacklisted = array("!Qq12345");
-    if (in_array($password, $blacklisted)) {
+    $blacklist = file("./blacklist.txt", FILE_IGNORE_NEW_LINES);
+    if (in_array($password, $blacklist)) {
         return false;
     }
     return true;
