@@ -15,7 +15,7 @@ if (mysqli_num_rows($resultGetUser) === 0){
 $rowUser = mysqli_fetch_assoc($resultGetUser);
 session_start();
 if (isset($_POST['keepLoggedIn']) && $_POST['keepLoggedIn'] == 'on') {
-    setcookie('username', $rowUser['username'], time() + (86400 * 30), "/"); 
+    setcookie('username', $rowUser['username'], time() + (86400 * 30), "/", "localhost", false, false); 
 }
 $_SESSION['username'] = $rowUser['username'];
 header("Location: getProducts.php");

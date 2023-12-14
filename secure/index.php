@@ -5,7 +5,7 @@
   </head>
   <body>
     <?php
-        if(isset($_COOKIE['username'])) {
+        if(isset($_COOKIE['secure_session_id'])) {
           header('location:controllers/getProducts.php');
           exit(0);
         }

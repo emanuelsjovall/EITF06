@@ -2,6 +2,6 @@
 session_start();
 session_unset(); 
 session_destroy(); 
-setcookie('username', '', time(), '/');
+setcookie('secure_session_id', '', time(), '/');
 header("Location: ../index.php");
 exit();?>
